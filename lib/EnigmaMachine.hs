@@ -49,7 +49,7 @@ passThroughRotors machine@(EnigmaMachine { rotors = rs }) c =
 
     cr' = inversePassThroughRotor (rs !! 2) c'''
     cr'' = inversePassThroughRotor (rs !! 1) cr'
-    cr''' = inversePassThroughRotor (rs !! 1) cr''
+    cr''' = inversePassThroughRotor (rs !! 0) cr''
 
   in
     cr'''
