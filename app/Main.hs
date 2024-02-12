@@ -22,7 +22,7 @@ defaultsMachine =
      rotor1 = mkRotor "abcdefghijklmnopqrstuvwxyz" 6
      rotor2 = mkRotor "abcdefghijklmnopqrstuvwxyz" 8 
      rotor3 = mkRotor "abcdefghijklmnopqrstuvwxyz" 10 
-     plugboard = mkPlugboard []
+     plugboard = mkPlugboard [('a', 'r'), ('t', 'z'), ('c', 'i'), ('d', 'j'), ('e', 'k'), ('f', 'l')]
      machine = mkEnigmaMachine [rotor1,rotor2,rotor3] plugboard
     in 
       machine
