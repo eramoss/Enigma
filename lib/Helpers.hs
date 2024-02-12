@@ -23,6 +23,7 @@ normalizeChar c
 
 -- Check if a character is alphabetic
 isAlphabetic :: Char -> Bool
+isAlphabetic ' ' = True
 isAlphabetic c = c `elem` ['a'..'z'] || c `elem` ['A'..'Z']
 
 -- Remove accents from characters

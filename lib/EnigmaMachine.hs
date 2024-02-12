@@ -3,7 +3,7 @@ module EnigmaMachine (encode,mkEnigmaMachine, mkPlugboard,mkRotor ,EnigmaMachine
 import Data.Map (Map)
 import qualified Data.Map as Map 
 import qualified Helpers as H
-import Debug.Trace
+import Data.Char
 
 
 alphabet_length = 26
@@ -33,7 +33,9 @@ mkEnigmaMachine rotors plugboard = EnigmaMachine rotors plugboard
 
 encode :: EnigmaMachine -> String -> String
 encode _ ([]) = []
-encode machine (char: input) = 
+encode machine (char: input) 
+  | isSpace char = char : encode machine input
+  | otherwise =
   let
     char' = applyPlugboard (plugboard machine) char
     machine' = rotateRotors machine
