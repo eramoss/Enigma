@@ -1,0 +1,16 @@
+# Cabal build artifacts
+dist/
+dist-newstyle/
+
+# Cabal package files
+*.cabal
+
+# Cabal sandbox
+.cabal-sandbox/
+
+# Cabal project local files
+cabal.project.local
+
+# Cabal project state files
+cabal.project.freeze
+cabal.project.local.freeze
