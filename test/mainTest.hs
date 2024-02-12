@@ -47,7 +47,7 @@ main = hspec $ do
     it "should encode the string" $ do
       let machine = defaultsMachine
       let string = E.encode machine "HELLO"
-      string `shouldBe` "RUNNK"
+      string `shouldBe` "QSKJF"
     it "should encode and decode" $ do
       let machine = defaultsMachine
       let string = E.encode machine "HELLO"

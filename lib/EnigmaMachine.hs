@@ -5,13 +5,16 @@ import qualified Data.Map as Map
 import qualified Helpers as H
 import Debug.Trace
 
+
+alphabet_length = 26
+
 data Rotor = Rotor {
   wiring :: String,  -- The wiring configuration of the rotor
   position :: Int   -- The current position of the rotor
 }deriving Show
 
 mkRotor :: String -> Int -> Rotor
-mkRotor wiring position = Rotor wiring (position `mod` 26)
+mkRotor wiring position = Rotor wiring (position `mod` alphabet_length)
 
 data Plugboard = Plugboard {
   connections :: Map Char Char
@@ -48,8 +51,8 @@ passThroughRotors machine@(EnigmaMachine { rotors = rs }) c =
     c''' = passThroughRotor (rs !! 2) c''
 
     cr' = inversePassThroughRotor (rs !! 2) c'''
-    cr'' = inversePassThroughRotor (rs !! 1) cr'
-    cr''' = inversePassThroughRotor (rs !! 0) cr''
+    cr'' = inversePassThroughRotor (rs !! 2) cr'
+    cr''' = inversePassThroughRotor (rs !! 1) cr''
 
   in
     cr'''
@@ -58,14 +61,14 @@ passThroughRotors machine@(EnigmaMachine { rotors = rs }) c =
 passThroughRotor :: Rotor -> Char -> Char
 passThroughRotor (Rotor rWiring rPosition) c = 
   let
-    index = (rPosition + (fromEnum c + fromEnum 'A')) `mod` 26
+    index = (rPosition + (fromEnum c + fromEnum 'A')) `mod` alphabet_length
     c' = rWiring !! index
   in
     c'
 inversePassThroughRotor :: Rotor -> Char -> Char
 inversePassThroughRotor (Rotor rWiring rPosition) c = 
   let
-    index = (rPosition - (fromEnum c + fromEnum 'A')) `mod` 26
+    index = (rPosition - (fromEnum c + fromEnum 'A')) `mod` alphabet_length
     c' = rWiring !! index
   in
     c'
@@ -81,14 +84,14 @@ applyPlugboard (Plugboard pbConnections) c =
 
 rotateRotors :: EnigmaMachine -> EnigmaMachine
 rotateRotors machine@(EnigmaMachine { rotors = rs }) 
-  | (position (rs !! 0)) `mod` 26 /= 0 = machine {rotors = [rotateRotor (rs !! 0), rs !! 1, rs !! 2]}
-  | (position (rs !! 1)) `mod` 26 /= 0 = machine {rotors = [rotateRotor (rs !! 0), rotateRotor (rs !! 1), rs !! 2]}
+  | (position (rs !! 0)) `mod` alphabet_length /= 0 = machine {rotors = [rotateRotor (rs !! 0), rs !! 1, rs !! 2]}
+  | (position (rs !! 1)) `mod` alphabet_length /= 0 = machine {rotors = [rotateRotor (rs !! 0), rotateRotor (rs !! 1), rs !! 2]}
   | otherwise = machine {rotors = [rotateRotor (rs !! 0), rotateRotor (rs !! 1), rotateRotor (rs !! 2)]}
 
 rotateRotor :: Rotor -> Rotor
 rotateRotor (Rotor rWiring rPosition) =
   let
-    new_position = (rPosition `mod` 26) + 1
+    new_position = (rPosition `mod` alphabet_length) + 1
   in
     Rotor rWiring new_position
 
