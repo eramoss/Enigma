@@ -2,9 +2,6 @@
 dist/
 dist-newstyle/
 
-# Cabal package files
-*.cabal
-
 # Cabal sandbox
 .cabal-sandbox/
 
