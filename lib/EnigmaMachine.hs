@@ -50,7 +50,7 @@ passThroughRotors machine@(EnigmaMachine { rotors = rs }) c =
     c'' = passThroughRotor (rs !! 1) c'
     c''' = passThroughRotor (rs !! 2) c''
 
-    cr' = inversePassThroughRotor (rs !! 2) c'''
+    cr' = inversePassThroughRotor (rs !! 2) c''' --reflector job
     cr'' = inversePassThroughRotor (rs !! 2) cr'
     cr''' = inversePassThroughRotor (rs !! 1) cr''
 
