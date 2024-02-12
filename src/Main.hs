@@ -3,6 +3,7 @@ module Main where
 import EnigmaMachine
 import System.IO
 import Data.List
+import Helpers
 
 main :: IO ()
 main = do
@@ -10,7 +11,7 @@ main = do
   putStrLn "\n\n\nWelcome to the Enigma Machine simulator!"
   putStrLn "Please enter a string to encode:\n"
   input <- getLine
-  let input' =  words input
+  let input' =  map cleanText $ words input
   let machine = defaultsMachine 
   let encoded = (map (encode machine) input')
   putStrLn ("\nEncoded string: " ++ (intercalate " " encoded))

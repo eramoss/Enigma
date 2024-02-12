@@ -81,8 +81,7 @@ executable Enigma
     default-language: Haskell2010
 
 library enigma-lib
-    exposed-modules: EnigmaMachine
-    other-modules: Helpers
+    exposed-modules: EnigmaMachine, Helpers
     hs-source-dirs: lib
     build-depends: base ^>=4.18.2.0, containers ^>= 0.6.5.1
     default-language: Haskell2010
@@ -90,6 +89,13 @@ library enigma-lib
 test-suite mainTest
     type:                exitcode-stdio-1.0
     main-is:             mainTest.hs
+    build-depends:       base ^>= 4.18.2.0, hspec ^>=2.11.7 , containers ^>= 0.6.5.1, enigma-lib
+    hs-source-dirs:      test
+    default-language:    Haskell2010
+
+test-suite helpersTest
+    type:                exitcode-stdio-1.0
+    main-is:             helpersTest.hs
     build-depends:       base ^>= 4.18.2.0, hspec ^>=2.11.7 , containers ^>= 0.6.5.1, enigma-lib
     hs-source-dirs:      test
     default-language:    Haskell2010
